@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&family=Silkscreen&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+/* Reset default margins and paddings */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family:'Teachers', serif; 
+}
+
+/* Background image setup */
+.background-image {
+    background-image: url('login.jpg'); /* Update with your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: opacity(0.9);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Centering the login container and moving to the left */
+.login-container {
+    position: absolute;
+    left: 10%; /* Align to the left */
+    top:10%;
+    height:400px;
+    width: 400px; /* Set a fixed width or adjust as needed */
+    padding: 40px; /* Add some padding */
+    background: rgba(241, 241, 241, 0.2); /* Optional: Add a background to make content stand out */
+    border-radius: 30px; /* Optional: Add border radius */
+    animation: fadeInUp 1s ease-out; /* Animation for login container */
+}
+
+/* Animation for fading in and sliding up the login container */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Styling the input boxes */
+.input-box {
+    position: relative;
+    margin: 30px 0; /* Adjust margin as needed */
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards; /* Fade in and slide up effect */
+    animation-delay: 0.5s; /* Delay to create a staggered effect */
+}
+
+/* Styling the input fields */
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e7e7e780;
+    border-radius: 30px;
+    outline: none;
+    background: #ffffff80;
+    transition: border-color 0.3s ease-in-out; /* Smooth transition for border color */
+}
+
+/* Positioning and styling the labels */
+.input-box label {
+    position: absolute;
+    left: 15px;
+    top: 50px;
+    pointer-events: fill;
+    transition: 0.2s ease all;
+}
+
+/* Label transitions on focus and hover */
+.input-box input:focus ~ label,
+.input-box input:not(:placeholder-shown) ~ label {
+    top: -8px;
+    left: 10px;
+    font-size: 12px;
+    padding: 0 5px;
+}
+
+/* Styling the login button */
+button {
+    display: block; /* Make button a block element */
+    width: 105%; /* Decrease button width */
+    padding: 8px; /* Decrease button padding */
+    background: #3e3e3e;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s; /* Smooth transition for background and scale */
+    margin: 20px auto 0; /* Center the button and add margin above */
+    text-align: center; /* Ensure text is centered within the button */
+}
+
+/* Button hover effect */
+button:hover {
+    background: #8a8a8b;
+    transform: scale(1.05); /* Slight scale-up effect */
+}
+
+/* Styling the extra options */
+.extra-options {
+    margin-top: 30px;
+    text-align: justify; /* Center align text */
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards; /* Fade in effect */
+    animation-delay: 1s; /* Delay to create a staggered effect */
+}
+
+/* Styling the links */
+.extra-options a {
+    color: #8a8a8b;
+    text-decoration: none;
+    margin: 0 29px;
+    transition: color 0.3s; /* Smooth transition for link color */
+}
+
+/* Link hover effect */
+.extra-options a:hover {
+    color: #2c2c2c; /* Change link color on hover */
+}
+
+/* Animation for sliding up */
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Styles for the navigation bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0); /* Make background transparent */
+    color: transparent; /* Make text invisible */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the left */
+    z-index: 1000;
+    font-family: 'Teachers', serif; 
+    padding-bottom: 10px; /* Additional padding for spacing */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Optional: add a slight shadow for effect */
+}
+
+.navbar h1 {
+    font-size: 2rem;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    letter-spacing: 0.01em;
+    position: relative;
+    padding-left: 20px; /* Ensure there is space from the edge */
+    color: #6a6a6a; /* Set text color for visibility */
+}
+
+/* Pseudo-element for the underline effect */
+.navbar h1::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px; /* Adjust thickness of the underline */
+    background: #6a6a6a; /* Color of the underline */
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Position below the h1 */
+}
+
+.navbar h1 span {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

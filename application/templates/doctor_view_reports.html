@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Reports</title>
+</head>
+<body>
+    <h2>Reports for {{ username }}</h2>
+    <ul>
+        {% for report in reports %}
+            <li>
+                Report ID: {{ report['file_id'] }} |
+                Filename: {{ report['filename'] }} |
+                <a href="{{ url_for('view_report', file_id=report['file_id']) }}" target="_blank">View Report (PDF)</a>
+
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('select_user_for_report') }}">Back to Select Patient</a>
+</body>
+</html>

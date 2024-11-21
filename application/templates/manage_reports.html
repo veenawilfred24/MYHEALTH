@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Reports</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Reports</h1>
+        <div class="options">
+            <!-- Add Report -->
+            <!-- Add Report -->
+            <div class="option">
+                <h2>Add Report</h2>
+                <form action="{{ url_for('upload_report_route') }}" method="POST" enctype="multipart/form-data">
+                <label for="file">Select a PDF file to upload:</label>
+                <input type="file" name="file" id="file" required>
+
+        <!-- Optional hidden fields if needed -->
+                <input type="hidden" name="username" value="{{ session['username'] }}">
+
+                <button type="submit">Upload Report</button>
+            </form>
+        </div>
+
+            <!-- View Reports -->
+            <div class="option">
+                <h2>View Reports</h2>
+                <form action="{{ url_for('view_reports_route') }}" method="GET">
+                    <button type="submit">View Uploaded Reports</button>
+                </form>
+            </div>
+
+            <!-- Summarize Report -->
+            <div class="option">
+                <h2>Summarize Report</h2>
+                <form action="{{ url_for('summarize_report_route') }}" method="POST">
+                    <label for="file_id">Enter the Report ID:</label>
+                    <input type="text" name="file_id" id="report_id" placeholder="Enter File ID to Summarize" required>
+                    <button type="submit">Summarize</button>
+                </form>
+                
+            </div>
+             <!-- View Original PDF Reports -->
+             <div class="option">
+                <h2>View Original PDF Reports</h2>
+                <form action="{{ url_for('view_patient_reports') }}" method="GET">
+                    <button type="submit">View My Reports</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

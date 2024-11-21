@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Family Health{% endblock %}
+
+{% block content %}
+<div class="family-health-container">
+    <h2>Family Health</h2>
+    <p>Manage health information for your family members here.</p>
+    <!-- Example family member list -->
+    <table>
+        <thead>
+            <tr>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Relation</th>
+                <th>Health Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in family_members %}
+            <tr>
+                <td>{{ member.member_id }}</td>
+                <td>{{ member.name }}</td>
+                <td>{{ member.relation }}</td>
+                <td>{{ member.health_status }}</td>
+                <td><a href="{{ url_for('view_family_member', member_id=member.member_id) }}">View</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

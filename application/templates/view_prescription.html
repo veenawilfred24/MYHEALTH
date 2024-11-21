@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Prescriptions</title>
+</head>
+<body>
+    <form method="POST" action="{{ url_for('view_prescription', username=username) }}">
+
+    <h1>Prescriptions for {{ username }}</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Hospital Name</th>
+                <th>Medication Name</th>
+                <th>Dosage</th>
+                <th>Before Food</th>
+                <th>After Food</th>
+                <th>Morning</th>
+                <th>Afternoon</th>
+                <th>Evening</th>
+                <th>Remarks</th>
+                <th>Note</th>
+                <th>Date Added</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prescription in prescriptions %}
+            <tr>
+                <td>{{ prescription.hospital_name }}</td>
+                <td>{{ prescription.medication_name }}</td>
+                <td>{{ prescription.dosage }}</td>
+                <td>{{ prescription.before_food }}</td>
+                <td>{{ prescription.after_food }}</td>
+                <td>{{ prescription.morning }}</td>
+                <td>{{ prescription.afternoon }}</td>
+                <td>{{ prescription.evening }}</td>
+                <td>{{ prescription.remarks }}</td>
+                <td>{{ prescription.note }}</td>
+                <td>{{ prescription.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="11">No prescriptions found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('patient_dashboard',username=session['username']) }}">Back to Home</a>
+</body>
+</html>

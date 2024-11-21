@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styled.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    
+
+    <div class="background-container">
+        <div class="background-image"></div>
+        <div class="gradient-overlay"></div>
+        <div class="white-background">
+            <div class="login-container">
+                <div class="login-box">
+                    <h2>Doctor Login</h2>
+                    <form method="post" action="{{ url_for('doctor_login',d_username=session[d_username]) }}" class="login-form">
+                        {{ form.hidden_tag() }}
+                        
+                        <!-- Display form errors -->
+                        {% if form.errors %}
+                            <div class="form-errors">
+                                {% for field, errors in form.errors.items() %}
+                                    {% for error in errors %}
+                                        <p>{{ form[field].label.text }}: {{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="input-box">
+                            {{ form.d_username.label }}<br>
+                            {{ form.d_username(size=32) }}<br>
+                        </div>
+                        <div class="input-box">
+                            {{ form.password.label }}<br>
+                            {{ form.password(size=32) }}<br>
+                        </div>
+                        <div class="input-box">
+                            {{ form.submit() }}
+                        </div>
+                        <div class="extra-options">
+                            <a href="#">Forgot Password?</a>
+                            <a href="{{ url_for('doctor_signup') }}">Create New Account</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const titleSpans = document.querySelectorAll('#navbar-title span');
+            titleSpans.forEach((span, index) => {
+                span.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>

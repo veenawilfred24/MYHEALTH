@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+
+{% block title %}Book Appointments{% endblock %}
+
+{% block content %}
+<div class="appointments-container">
+    <h2>Book Appointments</h2>
+    <p>Schedule your appointments here.</p>
+    <!-- Example form to book an appointment -->
+    <form method="POST" action="{{ url_for('book_appointment') }}">
+        <label for="doctor">Select Doctor:</label>
+        <select id="doctor" name="doctor">
+            {% for doctor in doctors %}
+            <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+            {% endfor %}
+        </select>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required>
+        <button type="submit">Book Appointment</button>
+    </form>
+</div>
+{% endblock %}

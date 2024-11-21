@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styled.css') }}">
+</head>
+<body>
+  
+
+    <div class="background-container">
+        <div class="background-image"></div>
+        <div class="gradient-overlay"></div>
+        <div class="white-background">
+            <div class="login-container">
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    <h2>Doctor Sign Up</h2>
+                    <div class="input-box">
+                        {{ form.d_username.label }}
+                        {{ form.d_username() }}
+                    </div>
+                    <div class="input-box">
+                        {{ form.email.label }}
+                        {{ form.email() }}
+                    </div>
+                    <div class="input-box">
+                        {{ form.name.label }}
+                        {{ form.name() }}
+                    </div>
+                    <div class="input-box">
+                        {{ form.mobile_no.label }}
+                        {{ form.mobile_no() }}
+                    </div>
+                    <div class="input-box">
+                        {{ form.license_no.label }}
+                        {{ form.license_no() }}
+                    </div>
+                    <div class="input-box">
+                        {{ form.hospital_name.label }}
+                        {{ form.hospital_name() }}
+                    </div>
+                    <div class="input-box">
+                        {{ form.password.label }}
+                        {{ form.password() }}
+                    </div>
+                    <div class="input-box">
+                        {{ form.confirm_password.label }}
+                        {{ form.confirm_password() }}
+                    </div>
+                    <button type="submit">{{ form.submit.label }}</button>
+                    <div class="extra-options">
+                        <a href="{{ url_for('doctor_login') }}">Already have an account? Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

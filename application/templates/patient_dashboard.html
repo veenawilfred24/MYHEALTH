@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style2.css') }}">
+    <link rel="icon" href="favicon.ico" type="Images/fav.png">
+
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        </a>
+        <div class="logo" id="menu-icon"></div>
+        <ul class="navbar">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#reports">My Reports</a></li>
+            <li><a href="#prescriptions">My Prescriptions</a></li>
+            <li><a href="#appointments">Appointments</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#chat">Chat</a></li>
+            <li><a href="{{ url_for('patient_login') }}">Logout</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <section class="home" id="home">
+            <div class="home-text">
+                <h2>Welcome, {{username}}!</h2>
+                <p id="dynamic-slogan">Manage your health records and stay connected with your healthcare providers.</p>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <a href="{{ url_for('manage_reports') }}">
+                        <img src="{{ url_for('static', filename='images/add-reports.png') }}" alt="reports">
+                        <h3>My Reports</h3>
+                        <p>Access, upload, and summarize your medical reports.</p>
+                    
+                </div>
+                <div class="feature-item">
+                    <a href="{{ url_for('view_prescription', username=username) }}">
+                        <img src="{{ url_for('static', filename='images/add-prescriptions.png') }}" alt="prescription">
+
+                        <h3>My Prescriptions</h3>
+                        <p>View and manage your prescriptions.</p>
+                    </a>
+                </div>
+                <div class="feature-item">
+                    <a href="#appointments">
+                        <img src="{{ url_for('static', filename='images/manage-appointments.png') }}" alt="appointments">
+
+                        <h3>Appointments</h3>
+                        <p>Schedule and manage your appointments.</p>
+                    </a>
+                </div>
+               
+                <div class="feature-item">
+                    <a href="{{ url_for('article') }}">
+                        <img src="{{ url_for('static', filename='images/chat-with-patients.png') }}" alt="chat">
+                        <h3>Health Queries</h3>
+                        <p>Gain knowledge about your health concern.</p>
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <ul class="social-icon">
+            <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-youtube"></ion-icon></a></li>
+        </ul>
+    
+        <ul class="menu">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p>&copy; 2024 MYHealth. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Floating Chatbot -->
+    <div class="chatbot-icon" id="chatbotIcon">
+        <img src="{{ url_for('static', filename='images/chatbot-icon.png') }}" alt="chat">
+
+    </div>
+
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            Chat with Us
+            <span class="chatbot-close" id="chatbotClose">&times;</span>
+        </div>
+        <div class="chatbot-body">
+            <!-- Chatbot content goes here -->
+            <p>Hello! How can I assist you today?</p>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script>
+        document.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Chatbot Toggle
+        const chatbotIcon = document.getElementById('chatbotIcon');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+
+        chatbotIcon.addEventListener('click', function() {
+            chatbotWindow.style.display = 'block';
+        });
+
+        chatbotClose.addEventListener('click', function() {
+            chatbotWindow.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

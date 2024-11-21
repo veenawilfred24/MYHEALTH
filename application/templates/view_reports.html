@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Reports</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+</head>
+<body>
+    <h2>Your Reports</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Report ID</th>
+            <th>Filename</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for report in reports %}
+        <tr>
+            <td>{{ report.report_id }}</td>
+            <td>{{ report.filename }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('view_reports_route') }}">
+                    <input type="hidden" name="report_id" value="{{ report.report_id }}">
+                    <button type="submit">View Summary</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if summary %}
+    <div>
+        <h2>Summary:</h2>
+        <p>{{ summary }}</p>
+    </div>
+{% endif %}
+
+    </ul>
+</body>
+</html>

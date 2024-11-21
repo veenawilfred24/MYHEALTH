@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        </a>
+        <div class="logo" id="menu-icon"></div>
+        <ul class="navbar">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#reports">My Reports</a></li>
+            <li><a href="#prescriptions">My Prescriptions</a></li>
+            <li><a href="#appointments">Appointments</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#chat">Chat</a></li>
+            <li><a href="#logout">Logout</a></li>
+        </ul>
+    </header>
+    <div class="chat-container">
+        <h2>Health Chat</h2>
+        <div id="chat-box" class="chat-box">
+            <!-- Messages will be appended here -->
+        </div>
+        <div class="input-container">
+            <input type="text" id="user-input" class="user-input" placeholder="Ask your health-related question...">
+            <button id="send-button" class="send-button">Send</button>
+        </div>
+    </div>
+    <footer>
+        <ul class="social-icon">
+            <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-youtube"></ion-icon></a></li>
+        </ul>
+    
+        <ul class="menu">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p>&copy; 2024 MYHealth. All Rights Reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('send-button').addEventListener('click', function() {
+            const userInput = document.getElementById('user-input').value;
+            if (userInput.trim() === '') return;
+
+            // Display user message
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `<div class="message user-message">${userInput}</div>`;
+            document.getElementById('user-input').value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Send the query to the server
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ query: userInput }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display LLM response
+                chatBox.innerHTML += `<div class="message bot-message">${data.response}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                // Display article links if available
+                if (data.articles && data.articles.length > 0) {
+                    data.articles.forEach(article => {
+                        chatBox.innerHTML += `<div class="message"><a href="${article}" target="_blank">${article}</a></div>`;
+                    });
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
+            })
+            .catch(error => {
+                chatBox.innerHTML += `<div class="message bot-message">Error: ${error.message}</div>`;
+            });
+        });
+    </script>
+</body>
+</html>

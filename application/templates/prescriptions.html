@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescriptions</title>
+</head>
+<body>
+    <h1>Add Prescription</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <!-- Patient Username -->
+        <div>
+            <label for="username">{{ form.username.label }}</label>
+            {{ form.username(class="form-control", placeholder="Enter patient's username") }}
+            {% if form.username.errors %}
+                <span class="text-danger">{{ form.username.errors[0] }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Prescription Text -->
+        <div>
+            <label for="prescription_text">{{ form.prescription_text.label }}</label>
+            {{ form.prescription_text(class="form-control", placeholder="Enter prescription details") }}
+            {% if form.prescription_text.errors %}
+                <span class="text-danger">{{ form.prescription_text.errors[0] }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Dosage -->
+        <div>
+            <label for="dosage">{{ form.dosage.label }}</label>
+            {{ form.dosage(class="form-control", placeholder="Enter dosage information") }}
+            {% if form.dosage.errors %}
+                <span class="text-danger">{{ form.dosage.errors[0] }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Timing -->
+        <div>
+            <label for="timing">{{ form.timing.label }}</label>
+            {{ form.timing(class="form-control", placeholder="Enter prescription timing") }}
+            {% if form.timing.errors %}
+                <span class="text-danger">{{ form.timing.errors[0] }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Remarks -->
+        <div>
+            <label for="remarks">{{ form.remarks.label }}</label>
+            {{ form.remarks(class="form-control", placeholder="Add any remarks") }}
+            {% if form.remarks.errors %}
+                <span class="text-danger">{{ form.remarks.errors[0] }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Prescription</title>
+</head>
+<body>
+    <h1>Add Prescription for {{ username }}</h1>
+    <form method="POST" action="{{ url_for('add_prescription', username=username) }}">
+        {{ form.hidden_tag() }}
+        {{ form.username.label }} {{ form.username() }}
+        {{ form.hospital_name.label }} {{ form.hospital_name() }}
+        {{ form.medication_name.label }} {{ form.medication_name() }}
+        {{ form.dosage.label }} {{ form.dosage() }}
+        {{ form.before_food.label }} {{ form.before_food() }}
+        {{ form.after_food.label }} {{ form.after_food() }}
+        {{ form.morning.label }} {{ form.morning() }}
+        {{ form.afternoon.label }} {{ form.afternoon() }}
+        {{ form.evening.label }} {{ form.evening() }}
+        {{ form.remarks.label }} {{ form.remarks() }}
+        {{ form.note.label }} {{ form.note() }}
+        {{ form.submit() }}
+    </form>
+    <a href="{{ url_for('doctor_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

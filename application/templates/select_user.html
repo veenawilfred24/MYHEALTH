@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select User</title>
+</head>
+<body>
+    <h1>Select User to Add Prescription</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.username.label }} {{ form.username() }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+
+    {% if username %}
+        <!-- Link to add prescription for the selected user -->
+        <a href="{{ url_for('add_prescription', username=username) }}">Add Prescription for {{ username }}</a>
+    {% endif %}
+
+    <a href="{{ url_for('doctor_dashboard',) }}">Back to Home</a>
+</body>
+</html>

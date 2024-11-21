@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select User for Report</title>
+</head>
+<body>
+    <h1>Select User to Upload Report</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.username.label }} {{ form.username() }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+
+    {% if username %}
+        <!-- Link to upload report for the selected user -->
+        <a href="{{ url_for('doctor_upload_report', username=username) }}">Upload Report for {{ username }}</a>
+    {% endif %}
+
+    <a href="{{ url_for('doctor_dashboard') }}">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style1.css') }}">
+
+    <link rel="icon" href="favicon.ico" type="Images/fav"> 
+    <title>MYHealth</title>
+</head>
+<body>
+    <header>
+        <a href:"#" class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        </a>
+        <div class="logo" id="menu-icon"></div>
+            <ul class="navbar">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#user-doctor">Doctor</a></li>
+                <li><a href="#user-patient">Patient</a></li>
+                <li class="features-link"><a href="#features">Features</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+       
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1>Welcome to MYHealth</h1>
+           
+            <p id="dynamic-slogan"></p>
+        </div>
+    </section>
+
+    <section class="user-panel" id="user-doctor">
+        <div class="panel-trigger"></div> 
+        <div class="user-panel">
+        <div class="panel-content">
+            <div class="text">
+                <h2 >For Doctors</h2>
+                <p>Access comprehensive patient histories with MYHealth’s advanced platform, which consolidates all medical records into a single, easy-to-navigate system. This integration allows you to quickly review a patient's complete health background, making it easier to make informed decisions and deliver high-quality care. Enhance your practice's efficiency and improve patient outcomes with tools designed to streamline your workflow and support effective communication.</p>
+                <button onclick="window.location.href='{{ url_for('doctor_login') }}'" class="btn shine">I am Doctor</button>
+
+            </div>
+            
+            <div class="image">
+                <img src="{{ url_for('static', filename='images/slide1.jpg') }}" alt="Doctor">
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="user-panel" id="user-patient">
+        <div class="panel-content">
+            <div class="image">
+                <img src="{{ url_for('static', filename='images/slide2.jpg') }}" alt="Patient">
+            </div>
+            <div class="text">
+                <h2>For Patients</h2>
+                <p class="para">Keep track of your entire medical history with ease using MYHealth's comprehensive digital platform. This tool helps you stay informed about your health by consolidating all your medical records in one accessible location, allowing for better management of your health information. Stay up-to-date with your health status and make well-informed decisions with the insights provided by MYHealth.
+
+                </p>
+                <button onclick="window.location.href='{{ url_for('patient_login') }}'" class="btn shine">I am Patient</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2>FEATURES</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='images/ai.png') }}" alt="Feature 1">
+                <h3>AI-Powered Summarization</h3>
+                <p>Understand your health reports easily.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='images/chatbot.png') }}" alt="Feature 2">
+                <h3>NLP-Powered Chatbot</h3>
+                <p>Interact effortlessly with the system.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='images/tree.png') }}" alt="Feature 3">
+                <h3>Family Tree Functionality</h3>
+                <p>Manage family health records in one place.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='images/article.png') }}" alt="Feature 4">
+                <h3>Article Recommendation</h3>
+                <p>Receive personalized health information based on query.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='images/dashboard.png') }}" alt="Feature 5">
+                <h3>Comprehensive Dashboard</h3>
+                <p>View key health information at a glance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="contact-form">
+        <h2>Contact Us</h2>
+
+        <!-- Display Flashed Messages -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('submit_contact') }}" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="button">Send</button>
+        </form>
+    </div>
+
+        <div class="contact-details">
+            <h3>Contact Information</h3>
+            <p>Email: info@myhealth.com</p>
+            <p>Phone: (123) 456-7890</p>
+            
+        </div>
+        <div class="about" id="about">
+            <h2>About Us</h2>
+            <p>Welcome to MYHealth, your central hub for managing medical records. Our mission is to revolutionize healthcare by providing a seamless, integrated system that enhances both patient and provider experiences.</p>
+            <p>Our team is dedicated to using cutting-edge technology to ensure your health information is accessible, secure, and comprehensible. With AI-powered tools, an intuitive interface, and a commitment to innovation, we are here to support your health journey.</p>
+        </div>
+    </section>
+
+    <footer>
+        
+            <ul class="social-icon">
+                <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-youtube"></ion-icon></a></li>
+            </ul>
+        
+        <ul class="menu">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+            
+        </ul>
+        <p>&copy; 2024 MYHealth. All Rights Reserved.
+        </p>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        const header = document.querySelector("header");
+ 
+ window.addEventListener("scroll",function(){
+     header.classList.toggle("sticky", window.scrollY>0);
+ });
+ document.addEventListener("DOMContentLoaded", function() {
+    const slogans = [
+        "Your medical history is now a history",
+        "Empowering your health, one step at a time",
+        "Caring for the community with excellence",
+        "Your health, our priority",
+        "Trusted medical care, just for you"
+    ];
+    
+    const sloganElement = document.getElementById("dynamic-slogan");
+    let currentSloganIndex = 0;
+
+    function typeSlogan(slogan) {
+        return new Promise(resolve => {
+            sloganElement.textContent = '';
+            sloganElement.style.width = '0'; // Reset width
+            let i = 0;
+            const typingInterval = setInterval(() => {
+                sloganElement.textContent += slogan[i++];
+                sloganElement.style.width = `${sloganElement.scrollWidth}px`; // Adjust width to fit text
+                if (i >= slogan.length) {
+                    clearInterval(typingInterval);
+                    setTimeout(() => resolve(), 1000); // Wait before starting to delete
+                }
+            }, 100); // Speed of typing
+        });
+    }
+
+    function deleteSlogan() {
+        return new Promise(resolve => {
+            const text = sloganElement.textContent;
+            let i = text.length;
+            const deletingInterval = setInterval(() => {
+                sloganElement.textContent = text.substring(0, i--);
+                sloganElement.style.width = `${sloganElement.scrollWidth}px`; // Adjust width to fit text
+                if (i < 0) {
+                    clearInterval(deletingInterval);
+                    sloganElement.style.width = '0'; // Hide cursor after deletion
+                    setTimeout(() => resolve(), 500); // Wait before typing the next slogan
+                }
+            }, 50); // Speed of deleting
+        });
+    }
+
+    async function updateSlogan() {
+        while (true) {
+            const slogan = slogans[currentSloganIndex];
+            await typeSlogan(slogan);
+            await deleteSlogan();
+            currentSloganIndex = (currentSloganIndex + 1) % slogans.length;
+        }
+    }
+
+    updateSlogan();
+});
+ // Change slogan every 5 seconds
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    
+
+
+    </script>
+</body>
+</html>
